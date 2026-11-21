@@ -1,5 +1,6 @@
-/* Underlight halftone 0.1. A positive halftone field: the dots are the colour.
-   Two sources in opposite corners, a rotated lattice, dot size follows the light. Tones come from --ul-tone-a and --ul-tone-b */
+/* Underlight halftone 0.2. A positive halftone field: the dots are the colour.
+   Two sources in opposite corners, a rotated lattice, dot size follows the light. The pointer is a spotlight.
+   Still when untouched. It reads --ul-duet-a and --ul-duet-b */
 (function () {
   function rgb(s) {
     s = (s || "").trim();
@@ -16,16 +17,15 @@
       dpr = Math.min(2, devicePixelRatio || 1),
       W = 0,
       H = 0,
-      mx = -9999,
-      my = -9999,
-      t0 = performance.now(),
-      last = 0,
-      o = Object.assign(
-        { pitch: 14, angle: 23, gamma: 1.9, motion: true },
-        opts || {},
-      ),
+      mx = 0,
+      my = 0,
+      tx = 0,
+      ty = 0,
+      lt = 0,
+      ltT = 0,
+      o = Object.assign({ pitch: 14, angle: 23, gamma: 1.9 }, opts || {}),
       scene = canvas.closest(".ul-scene"),
-      api = { options: o };
+      api = { options: o, dirty: true };
     function size() {
       W = canvas.clientWidth;
       H = canvas.clientHeight;
@@ -33,19 +33,17 @@
       canvas.width = Math.round(W * dpr);
       canvas.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      api.dirty = true;
     }
-    function draw(now) {
+    function draw() {
       if (!W) return;
       var cs = getComputedStyle(document.documentElement),
-        A = rgb(cs.getPropertyValue("--ul-tone-a")),
-        B = rgb(cs.getPropertyValue("--ul-tone-b")),
+        A = rgb(cs.getPropertyValue("--ul-duet-a")),
+        B = rgb(cs.getPropertyValue("--ul-duet-b")),
         P = o.pitch,
         th = (o.angle * Math.PI) / 180,
         c = Math.cos(th),
         s = Math.sin(th),
-        t = (now - t0) / 1000,
-        breathe = o.motion ? 0.06 * Math.sin(t * 0.45) : 0,
-        // sources: A at the top right, B at the bottom left. Each runs along a diagonal, like the corner flow
         vAx = -0.55 * W,
         vAy = 0.65 * H,
         lA = vAx * vAx + vAy * vAy,
@@ -81,26 +79,26 @@
             y = H / 2 + (i * s + j * c) * P;
           if (x < -P || x > W + P || y < -P || y > H + P) continue;
           var tA = ((x - W) * vAx + y * vAy) / lA,
-            tB = (x * vBx + (y - H) * vBy) / lB;
-          var iA = Math.pow(Math.max(0, 1 - tA / (1 + breathe)), o.gamma),
-            iB = Math.pow(Math.max(0, 1 - tB / (1 - breathe)), o.gamma);
-          var dp = (x - mx) * (x - mx) + (y - my) * (y - my),
-            iP = Math.exp(-dp / (2 * sig * sig)) * 0.85;
-          var w = iA + iB + iP * 0.5;
-          if (w <= 0.0001 && iP < 0.02) {
-          }
-          var f = Math.min(1.15, iA + iB + iP) + 0.05,
-            r = rMax * Math.pow(Math.min(f, 1.15), 0.85);
+            tB = (x * vBx + (y - H) * vBy) / lB,
+            iA = Math.pow(Math.max(0, 1 - tA), o.gamma),
+            iB = Math.pow(Math.max(0, 1 - tB), o.gamma),
+            iP =
+              lt *
+              Math.exp(
+                -((x - mx) * (x - mx) + (y - my) * (y - my)) / (2 * sig * sig),
+              ) *
+              0.85,
+            f = Math.min(1.15, iA + iB + iP) + 0.05,
+            r = rMax * Math.pow(f, 0.85);
           if (r < 0.4) continue;
-          var tot = iA + iB + 0.0001,
-            m = iB / tot,
+          var m = iB / (iA + iB + 0.0001),
+            lift = Math.min(1, iP * 0.8) * 0.35,
             R = A[0] * (1 - m) + B[0] * m,
             G = A[1] * (1 - m) + B[1] * m,
-            Bl = A[2] * (1 - m) + B[2] * m,
-            lift = Math.min(1, iP * 0.8);
-          R += (255 - R) * lift * 0.35;
-          G += (255 - G) * lift * 0.35;
-          Bl += (255 - Bl) * lift * 0.35;
+            Bl = A[2] * (1 - m) + B[2] * m;
+          R += (255 - R) * lift;
+          G += (255 - G) * lift;
+          Bl += (255 - Bl) * lift;
           ctx.fillStyle =
             "rgba(" +
             (R | 0) +
@@ -116,27 +114,43 @@
           ctx.fill();
         }
     }
-    function loop(now) {
+    function loop() {
       requestAnimationFrame(loop);
       if (scene && scene.inert) return;
-      if (now - last < (o.motion ? 33 : 100) && !api.dirty) return;
-      last = now;
+      if (Math.abs(ltT - lt) > 0.01) {
+        lt += (ltT - lt) * 0.18;
+        api.dirty = true;
+      }
+      if (lt > 0.01 && (Math.abs(tx - mx) > 0.4 || Math.abs(ty - my) > 0.4)) {
+        mx += (tx - mx) * 0.25;
+        my += (ty - my) * 0.25;
+        api.dirty = true;
+      }
+      if (!api.dirty) return;
       api.dirty = false;
-      draw(now);
+      draw();
     }
-    canvas.addEventListener("pointermove", function (e) {
+    function at(e) {
       var r = canvas.getBoundingClientRect();
-      mx = e.clientX - r.left;
-      my = e.clientY - r.top;
-      api.dirty = true;
-    });
+      tx = e.clientX - r.left;
+      ty = e.clientY - r.top;
+      if (lt < 0.02) {
+        mx = tx;
+        my = ty;
+      }
+      ltT = 1;
+    }
+    canvas.addEventListener("pointermove", at);
+    canvas.addEventListener("pointerdown", at);
     canvas.addEventListener("pointerleave", function () {
-      mx = my = -9999;
-      api.dirty = true;
+      ltT = 0;
     });
-    addEventListener("resize", function () {
-      size();
+    addEventListener("resize", size);
+    new MutationObserver(function () {
       api.dirty = true;
+    }).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-duet"],
     });
     api.redraw = function () {
       api.dirty = true;

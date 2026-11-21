@@ -1,4 +1,4 @@
-/* Underlight 0.4 runtime. No dependencies.
+/* Underlight 0.5 runtime. No dependencies.
    Everything on the page is a pure function of one number: idx, the position along the scenes.
    Scroll is the default input. A timeline (for example Alolyte) can drive Underlight.render(idx) instead. */
 (function () {
@@ -15,6 +15,7 @@
       parseFloat(getComputedStyle(root).getPropertyValue("--ul-step")) || 0.75,
     th = null,
     ax = false,
+    navY = 0,
     tick = 0,
     act = -1,
     railH = 0,
@@ -105,6 +106,17 @@
   links.forEach(function (a) {
     a._i = byId[(a.getAttribute("href") || "").slice(1)];
   });
+  [].forEach.call(
+    document.querySelectorAll("[data-ul-home],.ul-crown a.nm"),
+    function (a) {
+      var id = (a.getAttribute("href") || "").slice(1);
+      a._i = byId[id] != null ? byId[id] : 0;
+      a.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        go(a._i);
+      });
+    },
+  );
 
   [].forEach.call(document.querySelectorAll("[data-ul-letters]"), function (h) {
     var s = h.textContent;
@@ -226,16 +238,23 @@
         [].forEach.call(stage.querySelectorAll(".ul-exhibit"), function (s) {
           s.classList.toggle("on", s.dataset.exhibit === ex);
         });
-      var title = e.dataset.title;
+      var own = e.hasAttribute("data-title"),
+        title = own ? e.getAttribute("data-title") : "";
       links.forEach(function (l) {
         var on = l._i === k;
         if (on) {
           l.setAttribute("aria-current", "true");
-          title = title || l.textContent.toLowerCase();
+          if (!own) title = l.textContent.toLowerCase();
         } else l.removeAttribute("aria-current");
       });
-      setT("[data-ul-title]", title || e.id || kd);
+      setT("[data-ul-title]", title);
       setT("[data-ul-label]", modes[st] || st);
+      [].forEach.call(
+        document.querySelectorAll("[data-ul-title]"),
+        function (n) {
+          n.parentElement.hidden = !title;
+        },
+      );
       if (first) first = false;
       else peek();
     }
@@ -258,6 +277,8 @@
     var max = root.scrollHeight - innerHeight,
       p = max > 0 ? cl(scrollY / max) : 0;
     render(scrollY / (innerHeight * step), p);
+    if (body.hasAttribute("data-nav-open") && Math.abs(scrollY - navY) > 16)
+      body.removeAttribute("data-nav-open");
     if (th)
       th.style.transform =
         "translate" +
@@ -378,6 +399,70 @@
     rail.addEventListener("pointerup", drop);
     rail.addEventListener("pointercancel", drop);
   }
+
+  /* the crown opens when the pointer comes near the space it would take */
+  addEventListener(
+    "pointermove",
+    function (e) {
+      if (!crown || e.pointerType === "touch") return;
+      var lim = crown.classList.contains("near") ? 104 : 78;
+      crown.classList.toggle(
+        "near",
+        e.clientY < lim && e.clientX > 52 && e.clientX < innerWidth - 18,
+      );
+    },
+    { passive: true },
+  );
+  document.addEventListener("mouseleave", function () {
+    if (crown) crown.classList.remove("near");
+  });
+  /* touch: drag right to draw the nav in (or surface from a screen), drag left to put it away (or dive) */
+  var tx = 0,
+    ty = 0,
+    tm = false;
+  addEventListener(
+    "touchstart",
+    function (e) {
+      var t = e.touches[0];
+      tx = t.clientX;
+      ty = t.clientY;
+      tm = false;
+    },
+    { passive: true },
+  );
+  addEventListener(
+    "touchmove",
+    function (e) {
+      if (tm) return;
+      var t = e.touches[0],
+        dx = t.clientX - tx,
+        dy = t.clientY - ty;
+      if (Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+        tm = true;
+        if (dx > 0) {
+          if (kind(S[cur()]) === "screen") dive(-1);
+          else {
+            body.setAttribute("data-nav-open", "");
+            navY = scrollY;
+          }
+        } else if (body.hasAttribute("data-nav-open"))
+          body.removeAttribute("data-nav-open");
+        else dive(1);
+      }
+    },
+    { passive: true },
+  );
+  /* the current duet's name, wherever a page wants to show it */
+  function duet() {
+    [].forEach.call(document.querySelectorAll("[data-ul-duet]"), function (n) {
+      n.textContent = root.dataset.duet || "paragon";
+    });
+  }
+  new MutationObserver(duet).observe(root, {
+    attributes: true,
+    attributeFilter: ["data-duet"],
+  });
+  duet();
 
   window.Underlight = {
     render: render,

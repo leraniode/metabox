@@ -1,4 +1,4 @@
-/* Underlight 0.1. A surface system for Leraniode product pages. Rules and vocabulary: SPEC.md */
+/* Underlight 0.5. A surface system for Leraniode product pages. Rules and vocabulary: SPEC.md */
 :root {
   --ul-dark: #020202;
   --ul-base: #100e14;
@@ -6,10 +6,10 @@
   --ul-muted: #736e84;
   --ul-sec: #9f9cab;
   --ul-pri: #d8d6dc;
-  --ul-tone-a: #e33bb3;
-  --ul-tone-b: #a861f2;
-  --ul-deep-a: color-mix(in oklab, var(--ul-tone-a) 28%, var(--ul-dark));
-  --ul-deep-b: color-mix(in oklab, var(--ul-tone-b) 28%, var(--ul-dark));
+  --ul-duet-a: #e33bb3;
+  --ul-duet-b: #a861f2;
+  --ul-deep-a: color-mix(in oklab, var(--ul-duet-a) 28%, var(--ul-dark));
+  --ul-deep-b: color-mix(in oklab, var(--ul-duet-b) 28%, var(--ul-dark));
   --ul-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ul-d1: 120ms;
   --ul-d2: 200ms;
@@ -36,38 +36,42 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-/* tones: the product tones from Wondertone, each paired with its arc neighbour */
-:root[data-tone="red"] {
-  --ul-tone-a: #f04254;
-  --ul-tone-b: #e33bb3;
+/* duets: two tones paired with their neighbour on the arc. A tone is one colour, a duet is the pair. Paragon is the default */
+:root[data-duet="paragon"] {
+  --ul-duet-a: #e33bb3;
+  --ul-duet-b: #a861f2;
 }
-:root[data-tone="amber"] {
-  --ul-tone-a: #c97337;
-  --ul-tone-b: #f04254;
+:root[data-duet="ember"] {
+  --ul-duet-a: #f04254;
+  --ul-duet-b: #e33bb3;
 }
-:root[data-tone="olive"] {
-  --ul-tone-a: #ab862c;
-  --ul-tone-b: #c97337;
+:root[data-duet="kiln"] {
+  --ul-duet-a: #c97337;
+  --ul-duet-b: #f04254;
 }
-:root[data-tone="moss"] {
-  --ul-tone-a: #849724;
-  --ul-tone-b: #ab862c;
+:root[data-duet="grove"] {
+  --ul-duet-a: #ab862c;
+  --ul-duet-b: #c97337;
 }
-:root[data-tone="green"] {
-  --ul-tone-a: #24a65a;
-  --ul-tone-b: #1ba09a;
+:root[data-duet="moor"] {
+  --ul-duet-a: #849724;
+  --ul-duet-b: #ab862c;
 }
-:root[data-tone="cyan"] {
-  --ul-tone-a: #1ba09a;
-  --ul-tone-b: #0c9ac3;
+:root[data-duet="glade"] {
+  --ul-duet-a: #24a65a;
+  --ul-duet-b: #1ba09a;
 }
-:root[data-tone="blue"] {
-  --ul-tone-a: #0c9ac3;
-  --ul-tone-b: #4d85fd;
+:root[data-duet="tide"] {
+  --ul-duet-a: #1ba09a;
+  --ul-duet-b: #0c9ac3;
 }
-:root[data-tone="indigo"] {
-  --ul-tone-a: #4d85fd;
-  --ul-tone-b: #a861f2;
+:root[data-duet="current"] {
+  --ul-duet-a: #0c9ac3;
+  --ul-duet-b: #4d85fd;
+}
+:root[data-duet="nocturne"] {
+  --ul-duet-a: #4d85fd;
+  --ul-duet-b: #a861f2;
 }
 
 html {
@@ -145,14 +149,14 @@ p {
   );
 }
 .ul-lamp.a {
-  --c: var(--ul-tone-a);
+  --c: var(--ul-duet-a);
   --cd: var(--ul-deep-a);
   --ang: 222deg;
   transform-origin: 100% 0;
   transform: scale(calc(0.8 + var(--ul-p) * 0.45));
 }
 .ul-lamp.b {
-  --c: var(--ul-tone-b);
+  --c: var(--ul-duet-b);
   --cd: var(--ul-deep-b);
   --ang: 318deg;
   transform-origin: 100% 100%;
@@ -196,7 +200,7 @@ p {
   width: var(--ul-cut);
   overflow: hidden;
   clip-path: inset(0 0 0 calc((1 - var(--ul-open, 1)) * 100%));
-  background: linear-gradient(270deg, var(--ul-tone-a) 20%, var(--ul-tone-b))
+  background: linear-gradient(270deg, var(--ul-duet-a) 20%, var(--ul-duet-b))
     calc(var(--ul-p) * 100%) 0/220% 100%;
   -webkit-mask-image: linear-gradient(
     90deg,
@@ -459,8 +463,8 @@ p {
   border: 1px solid var(--ul-pri);
 }
 .ul-bar b:first-child {
-  background: var(--ul-tone-a);
-  border-color: var(--ul-tone-a);
+  background: var(--ul-duet-a);
+  border-color: var(--ul-duet-a);
 }
 .ul-win pre {
   margin: 0;
@@ -557,7 +561,7 @@ p {
 .ul-steps li::before {
   content: counter(n);
   font: 500 13px/1.9 var(--ul-mono);
-  color: var(--ul-tone-a);
+  color: var(--ul-duet-a);
 }
 .ul-meta {
   font: 500 13px/1 var(--ul-mono);
@@ -569,7 +573,7 @@ p {
   display: inline-block;
   width: 8px;
   height: 8px;
-  background: var(--ul-tone-a);
+  background: var(--ul-duet-a);
   margin-right: 10px;
 }
 .ul-foot {
@@ -676,6 +680,7 @@ p {
   color: var(--ul-pri);
 }
 .ul-crown.open,
+.ul-crown.near,
 .ul-crown:hover,
 .ul-crown:focus-within,
 body[data-layers] .ul-crown {
@@ -685,6 +690,13 @@ body[data-layers] .ul-crown {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.ul-crown a.nm {
+  text-decoration: none;
+  cursor: pointer;
+}
+.ul-crown > [hidden] {
+  display: none;
 }
 .ul-crown .nm svg {
   width: 34px;
@@ -926,33 +938,150 @@ body[data-layers] .ul-stage {
     transition: none;
   }
 }
-/* mobile is a stopgap until its own pass (see SPEC.md, open items) */
+/* mobile: the cut is a card that grows to take over the top half and returns to a card. The nav is a thin drawer, dragged in from the left. Light rises from the bottom */
 @media (max-width: 760px) {
+  body {
+    font-size: 15px;
+  }
+  .ul-lamp {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 70vh;
+  }
+  .ul-lamp.a {
+    --ang: 318deg;
+    transform-origin: 100% 100%;
+  }
+  .ul-lamp.b {
+    --ang: 42deg;
+    transform-origin: 0 100%;
+  }
+  .ul-plate {
+    -webkit-mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.66), #000 62%);
+    mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.66), #000 62%);
+  }
   .ul-stage {
-    display: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: auto;
+    height: 46vh;
+    clip-path: inset(
+      calc((1 - var(--ul-open, 1)) * 12vh) calc((1 - var(--ul-open, 1)) * 9vw)
+        calc((1 - var(--ul-open, 1)) * 26vh) calc((1 - var(--ul-open, 1)) * 9vw)
+        round calc((1 - var(--ul-open, 1)) * 14px)
+    );
+    opacity: min(1, calc(var(--ul-open, 1) * 2.4));
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .ul-stage::after {
+    -webkit-mask-image: linear-gradient(0deg, #fff, transparent 70%);
+    mask-image: linear-gradient(0deg, #fff, transparent 70%);
+  }
+  .ul-exhibit {
+    padding: calc(52px + 1vh) 7vw 14px;
+    gap: 8px;
+  }
+  .ul-cap {
+    font-size: 10px;
+    padding: 4px 7px;
+  }
+  .ul-win pre {
+    font-size: 11.5px;
+    line-height: 1.55;
+    padding: 10px 12px 12px;
   }
   .ul-scenes {
-    left: 12vw;
-    width: 84vw;
+    top: calc((7vh + var(--ul-open, 1) * 40vh) * (1 - var(--ul-screen, 0)));
+    bottom: calc(4vh * (1 - var(--ul-screen, 0)));
+    left: calc(5vw * (1 - var(--ul-screen, 0)));
+    right: calc(5vw * (1 - var(--ul-screen, 0)));
   }
-  body:not([data-ul-state="cut"]) .ul-scenes {
-    transform: none;
+  .ul-scene {
+    padding: 8px 2px;
+    gap: 14px;
+  }
+  .ul-scene[data-kind="prelude"] {
+    padding: 8px 2px;
+  }
+  .ul-scene h1 {
+    font-size: clamp(30px, 12cqw, 64px);
+  }
+  .ul-scene h2 {
+    font-size: clamp(24px, 8cqw, 40px);
+  }
+  .ul-scene p {
+    font-size: 15px;
   }
   .ul-ledger {
     grid-template-columns: 1fr;
   }
-  .ul-nav {
-    left: 10px;
-    gap: 14px;
+  .ul-cell {
+    min-height: 0;
+    padding: 14px;
   }
-  .ul-lamp {
-    width: 100vw;
+  .ul-rows dt {
+    font-size: 16px;
+    padding-right: 16px;
+  }
+  .ul-rows dd,
+  .ul-steps li {
+    font-size: 14px;
+  }
+  .ul-ends {
+    grid-template-columns: 1fr 1fr;
   }
   .ul-crown {
-    left: 44px;
-    width: calc(100vw - 72px);
+    left: 12px;
+    width: calc(100vw - 24px);
+    top: calc(
+      (env(safe-area-inset-top, 0px) + 10px) * (1 - var(--ul-screen, 0))
+    );
+    left: calc(12px + var(--ul-screen, 0) * (50vw - 12px));
   }
-  .ul-crown .hm {
+  .ul-crown .hm,
+  .ul-crown .sp {
+    display: none;
+  }
+  .ul-crown {
+    width: auto;
+  }
+  .ul-crown.open,
+  .ul-crown.near,
+  .ul-crown:hover,
+  .ul-crown:focus-within {
+    max-width: calc(100vw - 24px);
+  }
+  .ul-hud {
+    display: none;
+  }
+  .ul-nav {
+    left: 0;
+    top: calc(env(safe-area-inset-top, 0px) + 64px);
+    gap: 12px;
+    padding: 12px 8px 12px 10px;
+    background: rgba(2, 2, 2, 0.86);
+    border-radius: 0 var(--ul-r) var(--ul-r) 0;
+    transform: translateX(-110%);
+    transition: transform var(--ul-d2) var(--ul-ease);
+  }
+  body[data-nav-open] .ul-nav {
+    transform: none;
+  }
+  body[data-ul-state="cut"] .ul-nav a {
+    color: var(--ul-muted);
+  }
+  body[data-ul-state="cut"] .ul-nav a:hover,
+  body[data-ul-state="cut"] .ul-nav a[aria-current] {
+    color: var(--ul-pri);
+    border-left-color: var(--ul-pri);
+  }
+  .ul-rail {
     display: none;
   }
 }
