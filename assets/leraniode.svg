@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" role="img" aria-labelledby="title desc">
+  <title id="title">Leraniode mark and wordmark</title>
+  <desc id="desc">The Leraniode symbol paired with the leraniode wordmark on the corner-flow billboard background.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1ba09a"/>
+      <stop offset=".25" stop-color="#0c9ac3"/>
+      <stop offset=".5" stop-color="#4d85fd"/>
+      <stop offset=".75" stop-color="#a861f2"/>
+      <stop offset="1" stop-color="#e33bb3"/>
+    </linearGradient>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="2.5" fill="#020202"/>
+    </pattern>
+    <linearGradient id="wedgeL" x1="0" y1="0" x2=".55" y2=".65">
+      <stop offset="0" stop-color="#a861f2"/>
+      <stop offset=".35" stop-color="#301c47"/>
+      <stop offset="1" stop-color="#301c47" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wedgeR" x1="1" y1="0" x2=".45" y2=".65">
+      <stop offset="0" stop-color="#e33bb3"/>
+      <stop offset=".35" stop-color="#401534"/>
+      <stop offset="1" stop-color="#401534" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeL" x1="0" y1="0" x2=".55" y2=".65">
+      <stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeR" x1="1" y1="0" x2=".45" y2=".65">
+      <stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="mL"><rect width="1400" height="700" fill="url(#fadeL)"/></mask>
+    <mask id="mR"><rect width="1400" height="700" fill="url(#fadeR)"/></mask>
+  </defs>
+
+  <rect width="1400" height="700" rx="48" fill="#020202"/>
+  <g clip-path="inset(0 round 48)">
+    <rect width="1400" height="700" fill="url(#wedgeL)"/>
+    <rect width="1400" height="700" fill="url(#wedgeR)"/>
+    <rect width="1400" height="700" fill="url(#dots)" mask="url(#mL)" opacity=".75"/>
+    <rect width="1400" height="700" fill="url(#dots)" mask="url(#mR)" opacity=".75"/>
+  </g>
+
+  <g transform="translate(165 120) scale(.82) translate(-14.25 -1) rotate(16 231.25 243)">
+    <path d="
+M 256 58
+C 248 83 239 104 226 124
+C 214 143 198 158 178 168
+C 153 181 126 184 96 181
+C 72 179 49 171 30 164
+C 21 161 17 166 21 174
+C 30 191 47 207 67 218
+C 92 231 119 235 145 239
+C 164 242 178 249 184 263
+C 191 280 188 302 181 327
+C 175 349 173 373 178 395
+C 182 413 192 426 205 431
+C 215 435 222 428 225 414
+C 230 390 229 367 229 345
+C 229 319 230 293 237 274
+C 242 260 251 253 264 250
+C 282 246 306 245 329 245
+C 353 245 376 247 398 244
+C 420 241 435 233 441 222
+C 447 211 439 202 427 195
+C 409 184 389 174 369 162
+C 345 148 323 135 305 120
+C 287 105 275 88 267 68
+C 263 57 259 48 256 58 Z
+" fill="#e8ecee"/>
+    <path d="
+M 256 58
+C 248 83 239 104 226 124
+C 214 143 198 158 178 168
+C 153 181 126 184 96 181
+C 72 179 49 171 30 164
+C 21 161 17 166 21 174
+C 30 191 47 207 67 218
+C 92 231 119 235 145 239
+C 164 242 178 249 184 263
+C 191 280 188 302 181 327
+C 175 349 173 373 178 395
+C 182 413 192 426 205 431
+C 215 435 222 428 225 414
+C 230 390 229 367 229 345
+C 229 319 230 293 237 274
+C 242 260 251 253 264 250
+C 282 246 306 245 329 245
+C 353 245 376 247 398 244
+C 420 241 435 233 441 222
+C 447 211 439 202 427 195
+C 409 184 389 174 369 162
+C 345 148 323 135 305 120
+C 287 105 275 88 267 68
+C 263 57 259 48 256 58 Z
+" fill="none" stroke="#ffffff" stroke-opacity=".16" stroke-width="3"/>
+  </g>
+
+  <text x="575" y="405"
+        font-family="Nunito"
+        font-size="112"
+        font-weight="600"
+        letter-spacing="2"
+        fill="url(#accent)">leraniode</text>
+  <circle cx="579" cy="438" r="3" fill="#1ba09a"/>
+  <circle cx="600" cy="438" r="3" fill="#4d85fd"/>
+  <circle cx="621" cy="438" r="3" fill="#e33bb3"/>
+</svg>
