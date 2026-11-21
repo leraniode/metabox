@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Wondertone logo</title>
+  <desc id="desc">The Wondertone gem mark centred on a black square.</desc>
+  <rect width="512" height="512" fill="#000000"/>
+  <g transform="translate(256 256) scale(2.160) translate(-100 -105)">
+    <polygon points="100,15 20,105 100,195 52,105" fill="#1ba09a" stroke="#1ba09a" stroke-width="0.6" stroke-linejoin="round"/>
+    <polygon points="100,15 52,105 100,195 84,105" fill="#0c9ac3" stroke="#0c9ac3" stroke-width="0.6" stroke-linejoin="round"/>
+    <polygon points="100,15 84,105 100,195 116,105" fill="#4d85fd" stroke="#4d85fd" stroke-width="0.6" stroke-linejoin="round"/>
+    <polygon points="100,15 116,105 100,195 148,105" fill="#a861f2" stroke="#a861f2" stroke-width="0.6" stroke-linejoin="round"/>
+    <polygon points="100,15 148,105 100,195 180,105" fill="#e33bb3" stroke="#e33bb3" stroke-width="0.6" stroke-linejoin="round"/>
+  </g>
+</svg>
