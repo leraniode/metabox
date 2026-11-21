@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Leraniode mark</title>
+  <defs>
+    <linearGradient id="mark" gradientUnits="userSpaceOnUse" x1="47.5" y1="68.5" x2="443.5" y2="419.5" gradientTransform="rotate(-16 231.25 243)">
+      <stop offset="0" stop-color="#a861f2"/>
+      <stop offset="1" stop-color="#e33bb3"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(256 256) scale(1.098) translate(-245.5 -244.0) rotate(16 231.25 243)">
+    <path fill="url(#mark)" d="M 256 58 C 248 83 239 104 226 124 C 214 143 198 158 178 168 C 153 181 126 184 96 181 C 72 179 49 171 30 164 C 21 161 17 166 21 174 C 30 191 47 207 67 218 C 92 231 119 235 145 239 C 164 242 178 249 184 263 C 191 280 188 302 181 327 C 175 349 173 373 178 395 C 182 413 192 426 205 431 C 215 435 222 428 225 414 C 230 390 229 367 229 345 C 229 319 230 293 237 274 C 242 260 251 253 264 250 C 282 246 306 245 329 245 C 353 245 376 247 398 244 C 420 241 435 233 441 222 C 447 211 439 202 427 195 C 409 184 389 174 369 162 C 345 148 323 135 305 120 C 287 105 275 88 267 68 C 263 57 259 48 256 58 Z"/>
+  </g>
+</svg>
