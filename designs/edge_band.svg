@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="660" height="150"
+     viewBox="0 0 660 150">
+  <defs>
+    <linearGradient id="band"
+                    x1="100%" y1="50%"
+                    x2="35%" y2="50%">
+      <stop offset="0%" stop-color="#e33bb3"
+            stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#a861f2"
+            stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#a861f2"
+            stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="660" height="150" fill="#020202"/>
+  <rect width="660" height="150" fill="url(#band)"/>
+</svg>

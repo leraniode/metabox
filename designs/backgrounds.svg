@@ -1,0 +1,53 @@
+<svg width="100%" viewBox="0 0 710 530" role="img" style="" xmlns="http://www.w3.org/2000/svg">
+<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">The two final locked Leraniode background treatments</title>
+<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">Two background systems shown with sample content: an edge band wash for general use, and a corner-flow background with computed deep violet and pink gradients and a dot texture for banners and headers.</desc>
+
+<defs>
+<linearGradient id="band" x1="100%" y1="50%" x2="35%" y2="50%">
+<stop offset="0%" stop-color="#e33bb3" stop-opacity="0.55"/>
+<stop offset="55%" stop-color="#a861f2" stop-opacity="0.28"/>
+<stop offset="100%" stop-color="#a861f2" stop-opacity="0"/>
+</linearGradient>
+
+<pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+<circle cx="6" cy="6" r="1.5" fill="#020202"/>
+</pattern>
+<linearGradient id="wedgeL" x1="0%" y1="0%" x2="55%" y2="65%">
+<stop offset="0%" stop-color="#a861f2"/>
+<stop offset="35%" stop-color="#301c47"/>
+<stop offset="100%" stop-color="#301c47" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="wedgeR" x1="100%" y1="0%" x2="45%" y2="65%">
+<stop offset="0%" stop-color="#e33bb3"/>
+<stop offset="35%" stop-color="#401534"/>
+<stop offset="100%" stop-color="#401534" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="fadeL" x1="0%" y1="0%" x2="55%" y2="65%">
+<stop offset="0%" stop-color="#fff"/><stop offset="55%" stop-color="#fff" stop-opacity="0.5"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="fadeR" x1="100%" y1="0%" x2="45%" y2="65%">
+<stop offset="0%" stop-color="#fff"/><stop offset="55%" stop-color="#fff" stop-opacity="0.5"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+<mask id="mL"><rect width="700" height="220" fill="url(#fadeL)"/></mask>
+<mask id="mR"><rect width="700" height="220" fill="url(#fadeR)"/></mask>
+</defs>
+
+<rect width="700" height="520" fill="#0a0710" style="fill:rgb(10, 7, 16);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<text x="20" y="24" font-size="12" fill="#736e84" font-family="sans-serif" style="fill:rgb(115, 110, 132);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">general use — edge band</text>
+<rect x="20" y="34" width="660" height="150" fill="#020202" style="fill:rgb(2, 2, 2);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="20" y="34" width="660" height="150" fill="url(#band)" style="stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="44" y="105" font-size="18" fill="#d8d6dc" font-family="sans-serif" font-weight="700" style="fill:rgb(216, 214, 220);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:18px;font-weight:700;text-anchor:start;dominant-baseline:auto">wondertone v0.4</text>
+<text x="44" y="126" font-size="12" fill="#9f9cab" font-family="sans-serif" style="fill:rgb(159, 156, 171);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">release notes</text>
+
+<text x="20" y="212" font-size="12" fill="#736e84" font-family="sans-serif" style="fill:rgb(115, 110, 132);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">banners / headers / billboards — corner flow</text>
+<g transform="translate(20,222)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+<rect width="660" height="220" fill="#020202" style="fill:rgb(2, 2, 2);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect width="660" height="220" fill="url(#wedgeL)" style="stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect width="660" height="220" fill="url(#wedgeR)" style="stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect width="660" height="220" fill="url(#dots)" mask="url(#mL)" opacity="0.75" style="stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.75;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect width="660" height="220" fill="url(#dots)" mask="url(#mR)" opacity="0.75" style="stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.75;font-family:anthropic-sans, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="24" y="150" font-size="22" fill="#d8d6dc" font-family="sans-serif" font-weight="700" style="fill:rgb(216, 214, 220);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:22px;font-weight:700;text-anchor:start;dominant-baseline:auto">leraniode</text>
+<text x="24" y="175" font-size="13" fill="#9f9cab" font-family="sans-serif" style="fill:rgb(159, 156, 171);stroke:none;color:rgb(11, 11, 11);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:13px;font-weight:400;text-anchor:start;dominant-baseline:auto">deliberate edge of software</text>
+</g>
+</svg>

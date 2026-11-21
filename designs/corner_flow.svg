@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="660" height="220"
+     viewBox="0 0 660 220">
+  <defs>
+    <pattern id="dots" width="12" height="12"
+             patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="1.5" fill="#020202"/>
+    </pattern>
+
+    <linearGradient id="wedgeL"
+                    x1="0%" y1="0%"
+                    x2="55%" y2="65%">
+      <stop offset="0%" stop-color="#a861f2"/>
+      <stop offset="35%" stop-color="#301c47"/>
+      <stop offset="100%" stop-color="#301c47"
+            stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="wedgeR"
+                    x1="100%" y1="0%"
+                    x2="45%" y2="65%">
+      <stop offset="0%" stop-color="#e33bb3"/>
+      <stop offset="35%" stop-color="#401534"/>
+      <stop offset="100%" stop-color="#401534"
+            stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="fadeL"
+                    x1="0%" y1="0%"
+                    x2="55%" y2="65%">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="55%" stop-color="#fff"
+            stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fff"
+            stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="fadeR"
+                    x1="100%" y1="0%"
+                    x2="45%" y2="65%">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="55%" stop-color="#fff"
+            stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fff"
+            stop-opacity="0"/>
+    </linearGradient>
+
+    <mask id="mL">
+      <rect width="660" height="220" fill="url(#fadeL)"/>
+    </mask>
+
+    <mask id="mR">
+      <rect width="660" height="220" fill="url(#fadeR)"/>
+    </mask>
+  </defs>
+
+  <rect width="660" height="220" fill="#020202"/>
+
+  <rect width="660" height="220" fill="url(#wedgeL)"/>
+  <rect width="660" height="220" fill="url(#wedgeR)"/>
+
+  <rect width="660" height="220"
+        fill="url(#dots)"
+        mask="url(#mL)"
+        opacity="0.75"/>
+
+  <rect width="660" height="220"
+        fill="url(#dots)"
+        mask="url(#mR)"
+        opacity="0.75"/>
+</svg>
