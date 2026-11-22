@@ -11,8 +11,10 @@
     S = [].slice.call(document.querySelectorAll(".ul-scene")),
     N = S.length,
     links = [].slice.call(document.querySelectorAll(".ul-nav a")),
-    step =
-      parseFloat(getComputedStyle(root).getPropertyValue("--ul-step")) || 0.75,
+    stepValue = parseFloat(
+      getComputedStyle(root).getPropertyValue("--ul-step"),
+    ),
+    step = Number.isFinite(stepValue) && stepValue > 0 ? stepValue : 0.75,
     th = null,
     ax = false,
     navY = 0,
@@ -37,7 +39,7 @@
   function cl(v) {
     return v < 0 ? 0 : v > 1 ? 1 : v;
   }
-  root.style.setProperty("--ul-n", Math.max(1, S.length - 1));
+  root.style.setProperty("--ul-n", Math.max(0, S.length - 1));
   function kind(el) {
     return el.dataset.kind || "plate";
   }
@@ -58,13 +60,23 @@
     return i * innerHeight * step;
   }
   function cur() {
+    if (!N) return 0;
     return Math.min(
       N - 1,
       Math.max(0, Math.round(scrollY / (innerHeight * step))),
     );
   }
   function go(i) {
-    scrollTo({ top: at(i), behavior: "smooth" });
+    if (!N) return;
+    i = Number(i);
+    if (!Number.isFinite(i)) return;
+    i = Math.max(0, Math.min(N - 1, Math.round(i)));
+    scrollTo({
+      top: at(i),
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
   }
 
   /* dev tools: layers view and a live readout. Off unless asked for */
@@ -121,7 +133,7 @@
   [].forEach.call(document.querySelectorAll("[data-ul-letters]"), function (h) {
     var s = h.textContent;
     h.textContent = "";
-    h.setAttribute("role", "img");
+    h.setAttribute("aria-label", s);
     s.split(" ").forEach(function (word, wi) {
       if (wi) h.appendChild(document.createTextNode(" "));
       var w = document.createElement("span");
@@ -181,6 +193,12 @@
 
   /* the one function that draws the page. idx 0 is the first scene, 1 the second, and so on */
   function render(idx, p) {
+    if (!N) return;
+    idx = Number(idx);
+    if (!Number.isFinite(idx)) idx = 0;
+    idx = Math.max(0, Math.min(N - 1, idx));
+    if (p == null || !Number.isFinite(Number(p))) p = N > 1 ? idx / (N - 1) : 0;
+    else p = cl(Number(p));
     var i0 = Math.min(N - 1, Math.max(0, Math.floor(idx))),
       i1 = Math.min(N - 1, i0 + 1),
       g = cl((idx - i0 - 0.25) / 0.5);
@@ -252,7 +270,7 @@
       [].forEach.call(
         document.querySelectorAll("[data-ul-title]"),
         function (n) {
-          n.parentElement.hidden = !title;
+          if (n.parentElement) n.parentElement.hidden = !title;
         },
       );
       if (first) first = false;
@@ -337,6 +355,7 @@
   var dx = 0,
     dxT = 0;
   function dive(dir) {
+    if (!N) return;
     var c = cur();
     if (dir > 0) {
       for (var i = c + 1; i < N; i++)
